@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "468297817281",
+    "project_id": "mylocalhook-f2414",
+    "storage_bucket": "mylocalhook-f2414.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:468297817281:android:a9ede422b4ae1f2054c840",
+        "android_client_info": {
+          "package_name": "org.mlh.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "468297817281-ifg8vjmpmu7udl0l22g8m4nppgfraf7k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsjAggasepiWidl__mmk2nU31vsUw4J1E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "468297817281-ifg8vjmpmu7udl0l22g8m4nppgfraf7k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
