@@ -7,6 +7,10 @@ import DropDownPicker from 'react-native-dropdown-picker';
 let mobCodes = [{ label:' +91 | India', 
                   value: '+91', 
                   icon:()=>(<Image source = {require('./../../assets/flags/india.png')} 
+                  style={styles.imgIcon}/>) },
+                  { label:' +91 | India', 
+                  value: '+91', 
+                  icon:()=>(<Image source = {require('./../../assets/flags/india.png')} 
                   style={styles.imgIcon}/>) }];
 
 export function SelectMobileNumber(props){
@@ -60,7 +64,7 @@ const styles = StyleSheet.create({
     inputGroup:{ flexDirection:"row" },
     formLabel:{ marginTop:20,marginLeft:5, color:'#333',fontWeight:'bold' },
     dropDownView:{width:'30%', marginTop:10},
-    dropDownContainerStyle:{ width:'300%',backgroundColor: '#eee',zIndex: 1000, elevation: 1000 },
+    dropDownContainerStyle:{ width:'300%',backgroundColor: '#f9f9f9',zIndex: 1000, elevation: 1000 },
     dropDownStyle:{ height: 40 },
     inputTextView:{ width:'58%',flexDirection:'row' },
     selectInputGroup: { width:'100%',height:50, marginLeft:5, marginTop:10, marginRight:-2, borderTopLeftRadius: 8, 
