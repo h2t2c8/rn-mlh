@@ -5,7 +5,7 @@ import { View, Text, TextInput, StyleSheet } from 'react-native';
  * <AutoCompleteSearch 
         data={["Apple", "ApMax","AppMax","Mango", "Banana", "Orange"]} 
         placeholder="Enter AutoComplete Search Field" 
-        autoCompleteValue={(value)=>alert(JSON.stringify(value))}
+        onValueReceived={(value)=>alert(JSON.stringify(value))}
          />
  *
  */
@@ -16,11 +16,11 @@ export default function AutoCompleteSearch(props){
     useEffect(() => { 
         if(textInputField.length===0) { setViewDropdown(false); }
         setFilterDropdown(props.data.filter(str =>str.includes(textInputField)));
-        props.autoCompleteValue(textInputField);
+        props.onValueReceived(textInputField);
     }, [textInputField]);
     return (
         <View >
-            <Text style={defaultStyles.labelForm}>AutoComplete Search</Text>
+            <Text style={defaultStyles.labelForm}>{props.label}</Text>
             <View style={defaultStyles.autoCompleteFormView}>
                 <TextInput style={defaultStyles.inputForm} {...props}
                 value={textInputField}

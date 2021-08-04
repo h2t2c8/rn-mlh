@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { StyleSheet, View, Text, ScrollView, Dimensions } from 'react-native';
 import AutoCompleteSearch from './../Materials/AutoCompleteSearch';
 import { SelectMobileNumber } from './../Materials/MobileNumberField';
+import SelectDropdown from './../Materials/SelectDropdown';
 
 export default function Movement() {
   const data =  ["Apple", "ApMax","AppMax","Mango", "Banana", "Orange"];
@@ -14,10 +15,17 @@ export default function Movement() {
         maxLength={10} 
         onMobileNumberReceived={()=>{}}/>
         <AutoCompleteSearch 
+          label="AutoComplete Search"
           data={data} 
           placeholder="Enter AutoComplete Search Field" 
-          autoCompleteValue={(value)=>{}}
+          onValueReceived={(value)=>{}}
          />
+         <SelectDropdown
+            label="Dropdown" 
+            placeholder="Select Dropdown"
+            data={[{ label:' +91 | India', value: '+91' }]} 
+            onValueReceived={(value)=>{}} 
+          />
       </View>
     );
 }
