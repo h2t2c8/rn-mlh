@@ -24,28 +24,35 @@ export default function AutoCompleteSearch(props){
             <View style={defaultStyles.autoCompleteFormView}>
                 <TextInput style={defaultStyles.inputForm} {...props}
                     value={textInputField}
-                    onChangeText={(input)=>{ 
-                                    setTextInputField(input); 
-                                    if(input.length>0) { setViewDropdown(true); 
-                                  } }} />
+                    onChange={(input)=>{ 
+                                if(props.multiSelect){ setTextInputField([...textInputField, input]); }
+                                else {  setTextInputField(input);  }
+                                if(input.length>0) { setViewDropdown(true); 
+                    } }} />
                 {viewDropdown && filterDropdown.length>0 && (
                     <View style={defaultStyles.dropDownView}>
                     {filterDropdown.map((data)=>{
                         return <Text style={defaultStyles.dropDownText}
-                        onPress={()=>{setTextInputField(data);setViewDropdown(false);}}>{data}</Text>
+                        onPress={()=>{
+                            if(props.multiSelect){ setTextInputField([...textInputField, data]); }
+                                else {  setTextInputField(data);  }
+                            setViewDropdown(false);
+                        }}>{data}</Text>
                     })}
                     </View>
                  )}
             </View>
             {props.multiSelect && (
-            <View style={defaultStyles.multiSelectView}>
+                <View style={defaultStyles.multiSelectView}>
+                {textInputField.map(data=>{
+                return (
                 <View style={defaultStyles.selectItemView}>
-                     <Text style={defaultStyles.selectItem}>Hello &nbsp;
+                     <Text style={defaultStyles.selectItem}>{data} &nbsp;
                         <FontAwesomeIcon name="close" size={20} color="#555"
                         onPress={()=>props.setVisible(!props.visible)}/></Text>
-                </View>
-            </View>
-            )}
+                </View>);
+            })}
+            </View>)}
         </View>
     );
 }
