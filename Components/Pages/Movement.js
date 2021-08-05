@@ -17,6 +17,7 @@ export default function Movement() {
         <AutoCompleteSearch 
           label="AutoComplete Search"
           data={data} 
+          multiSelect={true}
           placeholder="Enter AutoComplete Search Field" 
           onValueReceived={(value)=>{}}
          />
