@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, ScrollView, Dimensions } from 'react-native';
 import AutoCompleteSearch from './../Materials/AutoCompleteSearch';
 import { SelectMobileNumber } from './../Materials/MobileNumberField';
 import SelectDropdown from './../Materials/SelectDropdown';
+import Input from './../Materials/Input';
 
 export default function Movement() {
   const data =  ["Apple", "ApMax","AppMax","Mango", "Banana", "Orange"];
@@ -27,6 +28,7 @@ export default function Movement() {
             data={[{ label:' +91 | India', value: '+91' }]} 
             onValueReceived={(value)=>{}} 
           />
+          <Input placeholder="Enter Value"/>
       </View>
     );
 }

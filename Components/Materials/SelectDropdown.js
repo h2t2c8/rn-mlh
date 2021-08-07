@@ -14,6 +14,7 @@ export default function SelectDropdown(props){
             <DropDownPicker
                 open={dropDownState}
                 {...props}
+                containerStyle={{zIndex:-1}}
                 items={props.data}
                 placeholder={selectInputField}
                 defaultIndex={0}
