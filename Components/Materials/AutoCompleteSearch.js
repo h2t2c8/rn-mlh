@@ -7,7 +7,6 @@ import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
         placeholder="Enter AutoComplete Search Field" 
         onValueReceived={(value)=>alert(JSON.stringify(value))}
          />
- *
  */
 export default function AutoCompleteSearch(props){
     const [textInputField, setTextInputField] = useState(props.multiSelect?[]:"");
@@ -49,6 +48,9 @@ export default function AutoCompleteSearch(props){
                             setViewDropdown(false);
                         }
                     }}  />
+                <Text style={defaultStyles.inputHint}>
+                    (Provide Minimum 2 Fields in Autocomplete)
+                </Text>
                 {viewDropdown && filterDropdown.length>0 && (
                     <View style={defaultStyles.dropDownView}>
                     {filterDropdown.map((data)=>{
@@ -83,6 +85,7 @@ export default function AutoCompleteSearch(props){
 }
 
 const defaultStyles = StyleSheet.create({ 
+    inputHint:{ textAlign:'right',margin:5,color:'#aaa' },
     inputForm: { width:'100%',height:50,marginTop:8, borderWidth:1, borderRadius: 8, 
                     borderColor: '#000', backgroundColor: 'white', color:'#000', paddingLeft:20, 
                     paddingRight:20, paddingTop:8, paddingBottom:8 },
