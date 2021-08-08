@@ -42,6 +42,7 @@ function ScreenVideo(props){
       </View>
       <View style={{flex:0.8, flexDirection:'column',justifyContent: 'flex-end', alignItems: 'flex-end'}}>
         <View style={{padding:30}}><FontAwesomeIcon name="arrow-left" size={36} color="#eee" /></View>
+        <View style={{padding:30}}><FontAwesomeIcon name="volume-up" size={36} color="#eee" /></View>
         <View style={{padding:30}}><FontAwesomeIcon name="heart" size={36} color="#eee" /></View>
         <View style={{padding:30}}><FontAwesomeIcon name="wechat" size={36} color="#eee" /></View>
         <View style={{padding:30}}><FontAwesomeIcon name="share-alt" size={36} color="#eee" /></View>
