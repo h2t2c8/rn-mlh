@@ -13,6 +13,7 @@ function ScreenVideo(props){
   const [buttonStatus, setButtonStatus] = React.useState(true);
 
   useEffect(() => {
+     console.log(props.index+" "+props.currentVideoIndex);
       let timer1 = setTimeout(() => setButtonStatus(false), 5000);
       return () => { clearTimeout(timer1); };
   },[buttonStatus]);
@@ -23,7 +24,7 @@ function ScreenVideo(props){
       source={{ uri: props.url }}
       resizeMode="contain"
       isLooping
-      shouldPlay
+      shouldPlay={(props.index===props.currentVideoIndex)?true:false}
       onPlaybackStatusUpdate={status =>setStatus(() => status)}
     />  
     </TouchableOpacity>
@@ -79,6 +80,7 @@ function ScreenVideo(props){
                         </View>
         </View>
         <View style={{flex: 0.5, margin:15}}>
+          <TouchableOpacity></TouchableOpacity>
           <Button title="Subscribe"/>
         </View>
       </View>
@@ -88,17 +90,41 @@ function ScreenVideo(props){
     </View>);
 }
 
+
 export default function SwipeVideo(props){
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
   const [scroller, setScroller] = useState();
+  const [scrollContentOffset, setScrollContentOffset] = useState(0);
+  const isCloseToBottom = ({layoutMeasurement, contentOffset, contentSize}) => {
+    const paddingToBottom = 20;
+    return layoutMeasurement.height + contentOffset.y >=
+      contentSize.height - paddingToBottom;
+  };
+  const isCloseToTop = ({layoutMeasurement, contentOffset, contentSize}) =>{
+    return contentOffset.y == 0;
+  };
   return (
     <ScrollView 
+      onScrollBeginDrag={(event)=>{
+          console.log("Start"+currentVideoIndex);
+          setScrollContentOffset(event.nativeEvent.contentOffset.y);
+        }}
+      onScrollEndDrag={(event)=>{ 
+        console.log("End"+currentVideoIndex);
+        //  (scrollContentOffset<event.nativeEvent.contentOffset.y)?
+        //  setCurrentVideoIndex(isCloseToBottom(event.nativeEvent)?currentVideoIndex:currentVideoIndex+1):''
+        //  (scrollContentOffset>event.nativeEvent.contentOffset.y)?
+        //  setCurrentVideoIndex(isCloseToTop(event.nativeEvent)?currentVideoIndex:currentVideoIndex-1):''
+        }
+        // (Condition)?(DownDirection):(UpDirection)
+      }
       ref={(scrollView) => { setScroller(scrollView); }}
       style={styles.container}
       decelerationRate={0}
       snapToInterval={screenHeight}
       snapToAlignment={"center"}
       contentInset={{ top: 0, left: 30, bottom: 0, right: 30 }}>
-      {props.data.map((video,index)=><ScreenVideo index={index} url={video} scroller={scroller}/>)}
+      {props.data.map((video,index)=><ScreenVideo index={index} currentVideoIndex={currentVideoIndex} url={video} scroller={scroller}/>)}
     </ScrollView>
   );
 }
