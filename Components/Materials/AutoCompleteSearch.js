@@ -82,7 +82,7 @@ export default function AutoCompleteSearch(props){
             </View>)}
         </View>
     );
-}
+} 
 
 const defaultStyles = StyleSheet.create({ 
     inputHint:{ textAlign:'right',margin:5,color:'#aaa' },

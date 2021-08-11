@@ -6,6 +6,7 @@ import AppNavigator from './Components/Navigation/AppNavigator';
 import { LogBox } from 'react-native';
 import { usePreventScreenCapture } from 'expo-screen-capture';
 import SwipeVideo from './Components/Materials/SwipeVideo';
+import Swipe from './Components/Materials/Swipe';
 
 
 // Ignore all log notifications:
@@ -47,10 +48,11 @@ function HomeScreen() {
 
 export default function App() {
   usePreventScreenCapture();
-  // return <AppNavigator />
-  return <SwipeVideo data={["https://assets.mixkit.co/videos/preview/mixkit-waves-in-the-water-1164-large.mp4",
+  return <AppNavigator />
+ // return <Swipper />
+ /* return <SwipeVideo data={["https://assets.mixkit.co/videos/preview/mixkit-waves-in-the-water-1164-large.mp4",
   "https://assets.mixkit.co/videos/preview/mixkit-hands-holding-a-smart-watch-with-the-stopwatch-running-32808-small.mp4",
 "https://assets.mixkit.co/videos/preview/mixkit-avenue-with-trees-buildings-and-fast-cars-at-dusk-34563-small.mp4",
-"https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4"]}/>
+"https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4"]}/> */
 }
-
+  

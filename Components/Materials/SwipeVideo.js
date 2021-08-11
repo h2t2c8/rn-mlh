@@ -22,7 +22,7 @@ function ScreenVideo(props){
     <TouchableOpacity onPress={()=>setButtonStatus(true)}>
     <Video ref={video} style={styles.video}
       source={{ uri: props.url }}
-      resizeMode="contain"
+      resizeMode="cover"
       isLooping
       shouldPlay={(props.index===props.currentVideoIndex)?true:false}
       onPlaybackStatusUpdate={status =>setStatus(() => status)}
@@ -95,6 +95,7 @@ export default function SwipeVideo(props){
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
   const [scroller, setScroller] = useState();
   const [scrollContentOffset, setScrollContentOffset] = useState(0);
+  const [scrollCount, setScrollCount] = useState(0);
   const isCloseToBottom = ({layoutMeasurement, contentOffset, contentSize}) => {
     const paddingToBottom = 20;
     return layoutMeasurement.height + contentOffset.y >=
@@ -104,36 +105,33 @@ export default function SwipeVideo(props){
     return contentOffset.y == 0;
   };
   return (
-    <ScrollView 
+    // Change it to FlatList (Dynamic Loading)
+    <ScrollView onPress={()=>{ setScrollCount(scrollCount+1);alert(scrollCount);}}
       onScrollBeginDrag={(event)=>{
-          console.log("Start"+currentVideoIndex);
           setScrollContentOffset(event.nativeEvent.contentOffset.y);
-        }}
-      onScrollEndDrag={(event)=>{ 
-        console.log("End"+currentVideoIndex);
-        //  (scrollContentOffset<event.nativeEvent.contentOffset.y)?
-        //  setCurrentVideoIndex(isCloseToBottom(event.nativeEvent)?currentVideoIndex:currentVideoIndex+1):''
-        //  (scrollContentOffset>event.nativeEvent.contentOffset.y)?
-        //  setCurrentVideoIndex(isCloseToTop(event.nativeEvent)?currentVideoIndex:currentVideoIndex-1):''
-        }
-        // (Condition)?(DownDirection):(UpDirection)
-      }
+      }}
+      onScrollEndDrag={(event)=>{  }}
       ref={(scrollView) => { setScroller(scrollView); }}
       style={styles.container}
       decelerationRate={0}
       snapToInterval={screenHeight}
       snapToAlignment={"center"}
-      contentInset={{ top: 0, left: 30, bottom: 0, right: 30 }}>
-      {props.data.map((video,index)=><ScreenVideo index={index} currentVideoIndex={currentVideoIndex} url={video} scroller={scroller}/>)}
+      contentInset={styles.contentInset}>
+      {props.data.map((video,index)=><ScreenVideo index={index} 
+                                                  currentVideoIndex={currentVideoIndex} 
+                                                  url={video} scroller={scroller}/>)}
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {},
-  videoContainer:{flex: 1, justifyContent: 'center', backgroundColor: '#000' },
-  video: { position:'relative', alignSelf: 'center', width:'100%', height:Dimensions.get('screen').height },
-  view: { backgroundColor: 'blue', width: screenWidth, height: screenHeight },
-  view2: { backgroundColor: 'red', width: screenWidth, height: screenHeight },
-  userType:{ fontWeight:'bold',alignSelf: 'flex-start',borderRadius:4, paddingLeft:8,paddingRight:8,paddingTop:5,paddingBottom:5,backgroundColor:'#b50541', color:'#fff',fontSize:12,lineHeight:14 },
+  videoContainer:{ flex: 1, justifyContent:'center', backgroundColor:'#000' },
+  video: { position:'relative', alignSelf:'center', width:'100%', height:Dimensions.get('screen').height },
+  view: { backgroundColor:'blue', width: screenWidth, height: screenHeight },
+  view2: { backgroundColor:'red', width: screenWidth, height: screenHeight },
+  userType:{ fontWeight:'bold',alignSelf:'flex-start',borderRadius:4, paddingLeft:8, 
+              paddingRight:8, paddingTop:5,paddingBottom:5,backgroundColor:'#b50541', 
+              color:'#fff',fontSize:12,lineHeight:14 },
+  contentInset:{ top: 0, left: 30, bottom: 0, right: 30 }
 });

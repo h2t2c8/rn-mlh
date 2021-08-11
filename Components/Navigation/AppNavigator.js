@@ -29,6 +29,9 @@ export default function AppNavigator() {
           else if (route.name === 'PoliticalParties') {
             return <MaterialCommunityIcons name="vote" size={size} color={color} />;
           }
+          else if (route.name === 'Real') {
+            return <MaterialCommunityIcons name="plus-circle" size={36} style={{color:'#ff9800'}} />;
+          }
           else if (route.name === 'Community') {
             return <Ionicons name="people-circle" size={size} color={color} />;
           }
