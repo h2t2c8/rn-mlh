@@ -1,9 +1,13 @@
 import React, {useState} from 'react';
 import { StyleSheet, View, Button, Image, ScrollView, Dimensions } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { Avatar, Title, Caption, Paragraph, Drawer, Text, TouchableRipple, Switch } from 'react-native-paper';
 import { StatusBar } from 'expo-status-bar';
 import SimpleTab from './../Materials/SimpleTab';
+import * as Progress from 'react-native-progress';
+import PPI from './Home/PPI';
+
 
 
 export default function Home(props) {
@@ -41,10 +45,10 @@ export default function Home(props) {
         let tabInfo = [{name:'Location', value:<LocationOverviewSection/>},
         {name:'Telangana', value:<TopSection/>},
         { name:'India', value:<TopSection/>}];
-        return (<View style={{ flex: 9.5, flexDirection:'row', backgroundColor:'#fff' }}>
-            <View style={{flex:2}}>
+        return (<View style={styles.overviewSection}>
+            <View style={styles.overviewSectionTab}>
             <View>
-                <Text style={{textAlign:'center',marginTop:10,fontSize:16,fontWeight:'bold'}}>What's Happening and Trending?</Text>
+                <Text style={styles.overviewSectionTitle}>TRENDING TOPICS AROUND YOU</Text>
             </View>
             <SimpleTab info={tabInfo}/>
             </View>
@@ -52,38 +56,43 @@ export default function Home(props) {
     }
     
     const LocationOverviewSection = () => {
-        return (<ScrollView style={{width:Dimensions.get('screen').width,height:Dimensions.get('screen').height, flexGrow: 0.95}}>
-        <View style={{paddingLeft:0,paddingRight:0}}>
-            <View style={{flex: 1, flexWrap: 'wrap',flexShrink: 1}}>
-                <View style={{borderWidth:1,borderColor:'#ccc',padding:15}}>
-                    <View>
-                        <Text style={{borderRadius:8,paddingTop:5,paddingBottom:5, paddingLeft:10,paddingRight:10, fontWeight:'bold', alignSelf: "flex-start", fontSize:11, backgroundColor:'#555',letterSpacing:1,color:'#fff'}}>
-                            Politics and their Impact
-                        </Text>
-                    </View>
-                    <View style={{flex:3,flexDirection:'row',marginTop:15, backgroundColor:'#fff'}}>
-                        <View style={{flex:0.6, backgroundColor:'#fff'}}>
-                            <Text style={{textAlign:'right',fontSize:28,fontWeight:'bold'}}>1.</Text>
-                        </View>
-                        <View style={{flex:0.6,paddingLeft:15, backgroundColor:'#fff'}}>
-                            <Avatar.Image 
-                                source={{uri:'https://www.kindpng.com/picc/m/247-2478665_bjp-logo-png-photo-bharatiya-janata-party-transparent.png'}} 
-                                size={60} />
-                        </View>
-                        <View style={{flex:1.8,paddingLeft:15, backgroundColor:'#fff'}}>
-                            <Text style={{textAlign:'left',fontSize:16,fontWeight:'bold',color:'#555'}}>Bharatiya Janata Party</Text>
-                        </View>
-                    </View>
-                    <View style={{alignItems:'center',justifyContent:'center'}}>
-                        <Text style={{fontWeight:'bold',fontSize:15,lineHeight:22}}>
-                            What is Badge Title? What is Badge Title?  What is Badge Title? 
-                            What is Badge Title? What is Badge Title? What is Badge Title? 
-                        </Text>
-                    </View>
-                </View>
-            </View>
-            </View>
-            </ScrollView>);
+       const data = {"userLocation":"Gurramguda",
+                     "politicalparties":[{"index":1,
+                                          "icon":"https://www.kindpng.com/picc/m/247-2478665_bjp-logo-png-photo-bharatiya-janata-party-transparent.png",
+                                          "title":"Bharatiya Janata Party",
+                                          "ballotVotes":2999,
+                                          "ballotVotePercent":45,
+                                          "partyVolunteers":800
+                                        },
+                                        {"index":2,
+                                          "icon":"https://yt3.ggpht.com/ytc/AKedOLSebvtwfOQM7wlIymvfcvN6gkhbYPfT0X8w77crGA=s900-c-k-c0x00ffffff-no-rj",
+                                          "title":"Indian National Congress",
+                                          "ballotVotes":899,
+                                          "ballotVotePercent":35,
+                                          "partyVolunteers":938
+                                        },
+                                        {"index":3,
+                                        "icon":"https://www.kindpng.com/picc/m/247-2478665_bjp-logo-png-photo-bharatiya-janata-party-transparent.png",
+                                        "title":"Bharatiya Janata Party",
+                                        "ballotVotes":2999,
+                                        "ballotVotePercent":45,
+                                        "partyVolunteers":800
+                                      },
+                                      {"index":4,
+                                      "icon":"https://www.kindpng.com/picc/m/247-2478665_bjp-logo-png-photo-bharatiya-janata-party-transparent.png",
+                                      "title":"Bharatiya Janata Party",
+                                      "ballotVotes":2999,
+                                      "ballotVotePercent":45,
+                                      "partyVolunteers":800
+                                    },
+                                    {"index":5,
+                                    "icon":"https://www.kindpng.com/picc/m/247-2478665_bjp-logo-png-photo-bharatiya-janata-party-transparent.png",
+                                    "title":"Bharatiya Janata Party",
+                                    "ballotVotes":2999,
+                                    "ballotVotePercent":45,
+                                    "partyVolunteers":800
+                                  }]};
+       return <PPI data={data}/> 
     }
 
     return (
@@ -104,11 +113,14 @@ const styles = StyleSheet.create({
  homeheaderRightSection:{ flex: 1 },
  iconMenuOpen:{ marginTop:4, paddingTop:6, paddingLeft:4, color:'#333' },
  homeTopSection: { flex: 2, flexDirection:'row', backgroundColor:'#4e4e4e' },
-    homeTopLeftSection:{ flex:3,marginLeft:20,marginTop:20 },
-    homeTopRightSection:{flex:0.75,marginRight:20,marginTop:40},
-    userGreetings:{fontSize:16, fontWeight:'bold',color:'#fff'},
-    userLocationDisplay1:{fontSize:14,paddingTop:4,color:'#eee'},
-    userLocationDisplay2:{fontSize:14,paddingTop:4,color:'#eee'},
-    userLocationInfoEditButton:{borderWidth:1,borderRadius:8,color:'#666',borderColor:'#666',backgroundColor:'#fff',padding:5,textAlign:'center',fontWeight:'bold'}
+ homeTopLeftSection:{ flex:3,marginLeft:20,marginTop:20 },
+ homeTopRightSection:{flex:0.75,marginRight:20,marginTop:40},
+ userGreetings:{fontSize:16, fontWeight:'bold',color:'#fff'},
+ userLocationDisplay1:{fontSize:14,paddingTop:4,color:'#eee'},
+ userLocationDisplay2:{fontSize:14,paddingTop:4,color:'#eee'},
+ userLocationInfoEditButton:{borderWidth:1,borderRadius:8,color:'#666',borderColor:'#666',backgroundColor:'#fff',padding:5,textAlign:'center',fontWeight:'bold'},
 
+ overviewSection:{ flex: 9.5, flexDirection:'row', backgroundColor:'#fff' },
+ overviewSectionTab:{flex:2},
+ overviewSectionTitle:{textAlign:'center',marginTop:10,fontSize:15,fontWeight:'bold',textTransform:'uppercase',color:'#d23808'},
 });

@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
 import { StyleSheet, View, Text, Button } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import JoinCadreForm from './PoliticalParty/JoinCadreForm';
 
 export default function PoliticalParties(props) {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Button onPress={()=>{ props.navigation.toggleDrawer(); }} title="PoliticalParties"/>
-      </View>
+        <JoinCadreForm/>
     );
 }
 
