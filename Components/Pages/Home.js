@@ -14,8 +14,7 @@ export default function Home(props) {
     const HeaderSection = () => {
         return (<View style={styles.homeheader}>
             <View style={styles.homeheaderLeftSection}>
-            <Image style={styles.appLogo}
-                   source={require('./../../assets/logo-flat.png')} />
+            
             </View>
             <View style={styles.homeheaderRightSection}>
                <TouchableRipple onPress={()=>{ props.navigation.toggleDrawer(); }} >
@@ -108,11 +107,11 @@ export default function Home(props) {
 const styles = StyleSheet.create({ 
  appLogo:{ width:160,height:48,resizeMode:'contain',marginTop:6 },
  homeContainer:{ flex: 1, flexDirection:'column', backgroundColor:'#fff' },
- homeheader:{ flex: 1, flexDirection:'row' },
- homeheaderLeftSection:{ flex: 8, backgroundColor:'#fff' },
+ homeheader:{ flex: 1, flexDirection:'row',backgroundColor:'blue' },
+ homeheaderLeftSection:{ flex: 8, backgroundColor:'blue' },
  homeheaderRightSection:{ flex: 1 },
- iconMenuOpen:{ marginTop:4, paddingTop:6, paddingLeft:4, color:'#333' },
- homeTopSection: { flex: 2, flexDirection:'row', backgroundColor:'#4e4e4e' },
+ iconMenuOpen:{ marginTop:4, paddingTop:6, paddingLeft:4, color:'#fff' },
+ homeTopSection: { flex: 2, flexDirection:'row', backgroundColor:'blue',borderBottomRightRadius:30,borderBottomLeftRadius:30 },
  homeTopLeftSection:{ flex:3,marginLeft:20,marginTop:20 },
  homeTopRightSection:{flex:0.75,marginRight:20,marginTop:40},
  userGreetings:{fontSize:16, fontWeight:'bold',color:'#fff'},
@@ -122,5 +121,5 @@ const styles = StyleSheet.create({
 
  overviewSection:{ flex: 9.5, flexDirection:'row', backgroundColor:'#fff' },
  overviewSectionTab:{flex:2},
- overviewSectionTitle:{textAlign:'center',marginTop:10,fontSize:15,fontWeight:'bold',textTransform:'uppercase',color:'#d23808'},
+ overviewSectionTitle:{textAlign:'center',marginTop:10,fontSize:15,fontWeight:'bold',textTransform:'uppercase',color:'blue'},
 });

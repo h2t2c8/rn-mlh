@@ -46,7 +46,7 @@ export default function AppNavigator() {
     const tabBarOptions = {
         labelStyle: { fontSize: 12, margin: 0, padding: 0 },
         style:{ height:45, paddingTop:10, paddingBottom:10, backgroundColor:'#fff', overflow:'scroll' },
-        activeTintColor: 'tomato',
+        activeTintColor: 'blue',
         inactiveTintColor: 'gray',
         showLabel:false
       };

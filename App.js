@@ -47,7 +47,7 @@ function HomeScreen() {
 }
 
 export default function App() {
-  usePreventScreenCapture();
+ // usePreventScreenCapture();
   return <AppNavigator />
  // return <Swipper />
  /* return <SwipeVideo data={["https://assets.mixkit.co/videos/preview/mixkit-waves-in-the-water-1164-large.mp4",
