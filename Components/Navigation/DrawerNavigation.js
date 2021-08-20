@@ -4,7 +4,7 @@ import { createDrawerNavigator, DrawerContentScrollView,
     DrawerItemList,
     DrawerItem } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
-import Home from './../Pages/Home';
+import HomeStackScreen from './../Pages/Home';
 import AboutApp from './../Pages/AboutApp';
 import MyBadgeInfo from './../Pages/MyBadgeInfo';
 import { DrawerContent } from './DrawerContent';
@@ -21,7 +21,7 @@ export default function DrawerNavigation() {
       }}
       drawerContentOptions={{activeTintColor:'#000',activeBackgroundColor:'#eee'}}
       >
-        <Drawer.Screen name="Home" component={Home} />
+        <Drawer.Screen name="Home" component={HomeStackScreen} />
         <Drawer.Screen name="AboutApp" component={AboutApp} />
         <Drawer.Screen name="MyBadgeInfo" component={MyBadgeInfo} />
     </Drawer.Navigator>

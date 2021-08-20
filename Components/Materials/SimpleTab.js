@@ -31,8 +31,10 @@ const [currentIndex, setCurrentIndex] = useState(0);
 
 
 const styles = StyleSheet.create({
-    TabHeader:{flexDirection:'row',borderBottomWidth:1,borderTopWidth:2,borderColor:'#ccc'},
-    TabContent:{flexDirection: "row",flexWrap:'wrap'},
-    TabHeadingHgl:{color:'blue',paddingTop:10,paddingBottom:10,flex:2,textAlign:'center', fontWeight:'bold',borderBottomWidth:2,borderColor:'blue'},
-    TabHeading:{paddingTop:10,paddingBottom:10,flex:2,textAlign:'center',color:'#000', fontWeight:'bold' }
+    TabHeader:{flexDirection:'row'},
+    TabContent:{flexDirection: "row",flexWrap:'wrap',backgroundColor:'#fff',marginTop:-1},
+    TabHeadingHgl:{borderTopLeftRadius:8,borderLeftWidth:1,borderLeftColor:'#fff',backgroundColor:'#fff',
+    borderTopRightRadius:8,borderRightWidth:1,borderRightColor:'#fff',
+                    borderTopWidth:1,borderTopColor:'#fff',color:'#333',paddingTop:10,paddingBottom:10,flex:2,textAlign:'center', fontWeight:'bold'},
+    TabHeading:{borderBottomWidth:2,borderBottomColor:'#fff',paddingTop:10,paddingBottom:10,flex:2,textAlign:'center',color:'#000', fontWeight:'bold' }
 });

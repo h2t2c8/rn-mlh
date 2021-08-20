@@ -5,8 +5,11 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { Avatar, Title, Caption, Paragraph, Drawer, Text, TouchableRipple, Switch } from 'react-native-paper';
 import { StatusBar } from 'expo-status-bar';
 import * as Progress from 'react-native-progress';
+import { useNavigation } from '@react-navigation/native';
+
 
 export default function PPI(props) {
+    const navigation = useNavigation();
     const userLocation = props.data.userLocation;
     const PPIBadge = () =><View><Text style={styles.trendSectionBadge}>Political Parties and their Impact</Text></View>
     const PPHeader = () =><View style={styles.trendSectionHeaderView}><Text style={styles.trendSectionHeader}>Top 10 Political Parties of {userLocation}</Text></View>
@@ -24,7 +27,7 @@ export default function PPI(props) {
     const PPBallotProgress = (props) =>{
         return (<View style={styles.politicalPartyTrendDescBallotProgressView}>
                     <View style={styles.politicalPartyTrendDescBallotProgressBarView}>
-                        <Progress.Bar color='green' width={130} borderColor='green' progress={0.3} />
+                        <Progress.Bar color='green' width={120} borderColor='green' progress={props.ballotVotePercent/100} />
                     </View>
                     <View style={styles.politicalPartyTrendDescBallotProgressBarVoteView}>
                         <Text style={styles.politicalPartyTrendDescBallotProgressBarVoteText}>{props.ballotVotePercent}% Votes</Text>
@@ -45,13 +48,13 @@ export default function PPI(props) {
     const PPDetails = () => {
         return (<View style={styles.politicalPartyTrendDescSeeDetailsMainView}>
                     <View style={styles.politicalPartyTrendDescSeeDetailsSubView}>
-                        <Text style={styles.politicalPartyTrendDescSeeDetailsText}>SEE DETAILS  </Text>
+                        <Text style={styles.politicalPartyTrendDescSeeDetailsText} onPress={()=>navigation.navigate('JoinCadreForm')}>SEE DETAILS  </Text>
                         <FontAwesome5 name="arrow-right" style={styles.politicalPartyTrendDescSeeDetailsIcon} size={16} />
                     </View>
                 </View>);
     }
     const PPTrendListItem = (props) => {
-        return (<View key={props.item.index} style={styles.politicalPartyTrendList}>
+        return (<View style={styles.politicalPartyTrendList}>
             <View style={styles.politicalPartyTrendNumberView}>
                 <Text style={styles.politicalPartyTrendNumber}>{props.item.index}.</Text>
             </View>
@@ -78,45 +81,37 @@ export default function PPI(props) {
             
         </View>);
     }
-    return (<ScrollView style={styles.locationOverviewSectionScroll}>
-        <View style={styles.locationOverviewScreen}>
-            <View style={styles.locationOverviewScreenView}>
+    return (
                 <View style={styles.trendSection}>
                     <PPIBadge/>
                     <PPHeader/>
                     {props.data.politicalparties.map((detail, index)=>{
-                        return <PPTrendListItem item={detail} />
+                        return <PPTrendListItem key={index} item={detail} />
                     })}
                     
                     
                     <View style={{alignItems:'center',justifyContent:'center'}}>
-                        <Text style={{fontWeight:'bold',fontSize:15,lineHeight:22}}>
-                            What is Badge Title? What is Badge Title?  What is Badge Title? 
-                            What is Badge Title? What is Badge Title? What is Badge Title? 
+                        <Text style={{fontWeight:'bold',color:'#999',fontSize:12,lineHeight:22}}>
+                            Note: The data enclosed here is based on the public interest and their vote to the political party 
+                            in that area. This helps respective Political party to update themselves to win 
+                            the heart of the public.
                         </Text>
                     </View>
-                </View>
-            </View>
-            </View>
-            </ScrollView>);
+                </View>);
 }
 
 const styles = StyleSheet.create({ 
-locationOverviewSectionScroll:{backgroundColor:'#f5f0ea',width:Dimensions.get('screen').width,height:Dimensions.get('screen').height-400, flexGrow: 0.95,paddingBottom:100},
-locationOverviewScreen:{paddingLeft:0,paddingRight:0},
-locationOverviewScreenView:{flex: 1, flexWrap: 'wrap',flexShrink: 1},
-trendSection:{borderWidth:1,borderColor:'#ccc',padding:15},
+trendSection:{margin:15,borderWidth:1,borderColor:'#ccc',borderRadius:8,padding:15,backgroundColor:'#f1f1f1'},
 trendSectionHeaderView:{marginTop:10,alignItems:'center',justifyContent:'center'},
 trendSectionHeader:{fontWeight:'bold',fontSize:15,lineHeight:22,color:'blue'},
- trendSectionBadge:{borderRadius:8,paddingTop:5,paddingBottom:5, paddingLeft:10,paddingRight:10, fontWeight:'bold', alignSelf: "flex-start", fontSize:11, backgroundColor:'#555',letterSpacing:1,color:'#fff'},
- /**/politicalPartyTrendList:{flex:3,flexDirection:'row',marginTop:15},
- politicalPartyTrendNumberView:{flex:0.4},
- politicalPartyTrendNumber:{textAlign:'right',fontSize:26,fontWeight:'bold'},
- politicalPartyTrendIcon:{flex:0.5,paddingLeft:15},
- politicalPartyTrendInfoView:{flex:2.1,paddingLeft:15,marginTop:5},
- politicalPartyTrendTitle:{textAlign:'left',fontSize:16,fontWeight:'bold',color:'#000'},
+trendSectionBadge:{borderRadius:8,paddingTop:5,paddingBottom:5, paddingLeft:10,paddingRight:10, fontWeight:'bold', alignSelf: "flex-start", fontSize:11, backgroundColor:'black',letterSpacing:1,color:'#fff'},
+politicalPartyTrendList:{flex:3,flexDirection:'row',marginTop:15},
+politicalPartyTrendNumberView:{flex:0.4},
+politicalPartyTrendNumber:{textAlign:'right',fontSize:26,fontWeight:'bold'},
+politicalPartyTrendIcon:{flex:0.5,paddingLeft:15},
+politicalPartyTrendInfoView:{flex:2.1,paddingLeft:15,marginTop:5},
+politicalPartyTrendTitle:{textAlign:'left',fontSize:16,fontWeight:'bold',color:'#000'},
    
- politicalPartyTrendDescView:{marginTop:8},
  politicalPartyTrendDescBallotView:{flex:2,flexDirection:'row',padding:8,backgroundColor:'#eee',
                 borderLeftWidth:1,borderLeftColor:'#ccc',borderRightWidth:1,borderRightColor:'#ccc'},
  politicalPartyTrendDescBallotIconView:{flex:0.75,flexDirection:'row'},
